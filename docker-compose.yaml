@@ -1,13 +1,11 @@
 
-version: '3.9'
-
 services:
   api:
     build:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       DUNDIE_DB__uri: "postgresql://postgres:postgres@db:5432/${DUNDIE_DB:-dundie}"
       DUNDIE_DB__connect_args: "{}"
@@ -33,3 +31,9 @@ services:
 
 volumes:
   dundie_pg_data:
+
+networks:
+  default:
+    name: lan
+    external: true
+  
